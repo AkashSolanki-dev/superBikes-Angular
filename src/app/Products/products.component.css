@@ -1,0 +1,57 @@
+.bike-action-buttons {
+  padding: 5px 0 20px 0;
+}
+.detail-btn,
+.buy-btn {
+  padding: 5px 25px;
+  border: none;
+  border-radius: 2px;
+  font-size: 12px;
+  margin: 0px 5px;
+  background-color: #f4d03f;
+}
+.loginText {
+  display: inline-block;
+  color: cadetblue;
+  margin-left: 8%;
+}
+.btn {
+  padding: 10px 35px;
+  margin-top: 6%;
+  margin-left: 38%;
+}
+h2 {
+  display: inline;
+}
+.sorting {
+  align-items: center;
+  display: inline-block;
+  position: relative;
+  float: right;
+}
+
+.sorting span {
+  margin-right: 10px;
+}
+
+.sorting img {
+  vertical-align: middle;
+}
+.sorted {
+  font-size: 18px;
+  font-style: italic;
+  color: red;
+}
+.filter {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.filter input[type="checkbox"],
+label {
+  position: relative;
+  float: right;
+  margin-right: 10px;
+}
+hr:nth-of-type(2) {
+  margin-top: 50px;
+}

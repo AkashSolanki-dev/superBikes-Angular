@@ -1,0 +1,64 @@
+<div class="container-home">
+  <!-- Category cards -->
+  <h2 class="category-heading">Categories</h2>
+  <div class="container-categories">
+    <div
+      [attr.data-text]="category['category']"
+      style="--r: -15"
+      class="glass"
+      *ngFor="let category of categories"
+      [routerLink]="['/products', category['category'] | removeSpaces]"
+    >
+      <img src="{{ category['image'] }}" alt="Product 1" />
+    </div>
+  </div>
+  <div class="show-all-button-container">
+    <button class="show-all-button" routerLink="/products">
+      Show All Products
+    </button>
+  </div>
+
+  <!-- recently-viwed slider accordion -->
+  <div class="recenty-viewed-container">
+    <h2
+      class="recently-viwed"
+      *ngIf="recentlyViewedProducts.length"
+      (click)="isAccordionOpen()"
+    >
+      Recently Viewed Bikes
+      <span class="arrow"
+        ><img
+          [src]="
+            accordionStatus
+              ? '../../../assets/open-arrow.webp'
+              : '../../../assets/close-arrow.png'
+          "
+          [alt]="accordionStatus ? 'up arrow' : 'down arrow'"
+          height="24px"
+      /></span>
+    </h2>
+    <div [hidden]="accordionStatus">
+      <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let bike of recentlyViewedProducts">
+          <ng-template carouselSlide [id]="bike.id.toString()">
+            <div class="product-card">
+              <div class="product-image">
+                <img
+                  src="../{{ bike.image }}"
+                  alt="Photo of a Shiba Inu"
+                  style="max-height: 201px"
+                />
+              </div>
+              <div class="product-details">
+                <h3 class="product-title">{{ bike.title }}</h3>
+                <button class="detail-button" [routerLink]="'/bike/' + bike.id">
+                  view-detail
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</div>

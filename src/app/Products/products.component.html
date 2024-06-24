@@ -1,0 +1,77 @@
+<div
+  class="bikes-page-main-container"
+  *ngIf="AllBikes?.length; else other_content"
+>
+  <div class="bikes-page-all-bikes">
+    <h2>Choose the bike best suits you</h2>
+    <div class="sorting">
+      <span><b>Sort by price :</b></span>
+      <span (click)="sort('ascending')" [ngClass]="{ sorted: sortOrder === 1 }"
+        >ascending(<span
+          ><img src="../../assets/up-arrow.png" alt="" height="16px" /></span
+        >)</span
+      >
+      <span (click)="sort('decending')" [ngClass]="{ sorted: sortOrder === 2 }"
+        >decending(<span
+          ><img src="../../assets/down-arrow.png" alt="" height="16px" /></span
+        >)</span
+      >
+    </div>
+    <hr />
+    <div class="filter">
+      <form [formGroup]="categoryForm">
+        <label for="bicycle">Bicycle</label>
+        <input type="checkbox" id="bicycle" formControlName="Bicycle" />
+        <label for="cityBike">City Bike</label>
+        <input type="checkbox" id="cityBike" formControlName="CityBikes" />
+        <label for="sportBike">Sport Bike</label>
+        <input type="checkbox" id="sportBike" formControlName="SportBikes" />
+      </form>
+    </div>
+    <hr />
+    <div class="bikes-page-bike-list">
+      <div
+        class="bike-card"
+        *ngFor="
+          let bike of AllBikes
+            | paginate : { itemsPerPage: 3, currentPage: currentPage };
+          let i = index
+        "
+      >
+        <div class="bike-image">
+          <img [src]="bike.image" width="600px" />
+          <div class="loginText" *ngIf="id === bike.id">
+            <h1>You need to login to buy this Bike</h1>
+            <button type="button" class="btn btn-primary" routerLink="/Login">
+              Login
+            </button>
+          </div>
+        </div>
+        <div class="bike-title">
+          {{ bike.title }}
+        </div>
+        <div class="bike-desc">{{ bike.desc.substring(0, 120) }}...</div>
+        <div class="bike-price">
+          <b>PRICE:</b> {{ bike.price | currency : "INR" }}
+        </div>
+        <div class="bike-action-buttons">
+          <button
+            class="buy-btn"
+            (click)="onBuyNow(bike.id, i)"
+            [disabled]="isDisable(i)"
+          >
+            {{ isDisable(i) ? "Bike added to cart" : "BUY NOW" }}
+          </button>
+          <button class="detail-btn" [routerLink]="'/bike/' + bike.id">
+            DETAILS
+          </button>
+        </div>
+        <hr />
+      </div>
+      <pagination-controls
+        (pageChange)="currentPage = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>
+<ng-template #other_content> loding.. </ng-template>

@@ -1,0 +1,10 @@
+section {
+  background-image: url("../../assets/contact-us\ background-image.webp");
+  background-size: 83.4vh;
+  height: 83.4vh;
+}
+input,
+textarea {
+  background: transparent;
+  border: none;
+}
